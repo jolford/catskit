@@ -5,7 +5,6 @@ import DutyTimeChecker from "./pages/DutyTimeChecker";
 import PerDiemTracker from "./pages/PerDiemTracker";
 import ScheduleSnapshot from "./pages/ScheduleSnapshot";
 import Navbar from "./components/Navbar";
-import "./index.css";
 
 const App = () => {
   return (
