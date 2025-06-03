@@ -4,19 +4,34 @@ import { Link, useLocation } from "react-router-dom";
 const Navbar = () => {
   const location = useLocation();
 
-  const linkClass = (path) =>
-    location.pathname === path
-      ? "text-blue-600 font-semibold"
-      : "text-gray-600 hover:text-blue-500";
+  const navItems = [
+    { path: "/", label: "Home", emoji: "🏠" },
+    { path: "/duty-time", label: "Duty Time", emoji: "⏱️" },
+    { path: "/per-diem", label: "Per Diem", emoji: "💸" },
+    { path: "/schedule", label: "Schedule", emoji: "📅" }
+  ];
 
   return (
-    <nav className="bg-white shadow p-4 mb-4">
-      <ul className="flex justify-around">
-        <li><Link className={linkClass("/")} to="/">Home</Link></li>
-        <li><Link className={linkClass("/duty-time")} to="/duty-time">Duty Time</Link></li>
-        <li><Link className={linkClass("/per-diem")} to="/per-diem">Per Diem</Link></li>
-        <li><Link className={linkClass("/schedule")} to="/schedule">Schedule</Link></li>
-      </ul>
+    <nav className="bg-white shadow-md p-4">
+      <div className="max-w-3xl mx-auto flex justify-between items-center">
+        <div className="text-xl font-bold text-blue-700">Cat’sKit 🐾</div>
+        <ul className="flex space-x-4">
+          {navItems.map(({ path, label, emoji }) => (
+            <li key={path}>
+              <Link
+                to={path}
+                className={`px-3 py-1 rounded-md ${
+                  location.pathname === path
+                    ? "bg-blue-100 text-blue-800 font-semibold"
+                    : "text-gray-700 hover:text-blue-600"
+                }`}
+              >
+                <span className="mr-1">{emoji}</span>{label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };
